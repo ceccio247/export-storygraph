@@ -1,0 +1,35 @@
+html,
+body {
+    /*width: 250px;*/
+    text-align: center;
+    font-size: 1.1em;
+    font-family: Arial;
+}
+
+.hidden {
+    display: none;
+}
+
+.button {
+    margin: 3% auto;
+    padding: 4px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.sgexport:hover {
+    background-color: #CFF2F2;
+}
+
+.sgexport {
+    background-color: #E5F2F2;
+}
+
+.reset {
+    background-color: #FBFBC9;
+}
+
+.reset:hover {
+    background-color: #EAEA9D;
+}
+

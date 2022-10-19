@@ -1,0 +1,22 @@
+{
+    "manifest_version": 2,
+    "name": "Export StoryGraph",
+    "version": "1.0",
+
+    "description": "Allows you to export the contents of your StoryGraph to-read pile",
+    
+    "icons": {
+        "48": "icons/export-storygraph-48.png"
+    },
+
+    "permissions": [
+        "activeTab",
+        "clipboardWrite"
+    ],
+
+    "browser_action": {
+        "default_icon": "icons/export-storygraph-32.png",
+        "default_title": "Export StoryGraph",
+        "default_popup": "popup/export_storygraph.html"
+    }
+}
