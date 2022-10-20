@@ -14,18 +14,43 @@
         var panes = element.getElementsByClassName("book-pane-content");
         for(var i = 0; i < panes.length; i++) {
             var title_and_author = panes[i].getElementsByClassName("book-title-author-and-series")[0];
-            var title = title_and_author.getElementsByTagName("h3")[0];
-            title = title.getElementsByTagName("a")[0].innerHTML;
-            result += title;
+            
+            // get title
+            var title = title_and_author.getElementsByTagName("h3")[0]
+                                        .getElementsByTagName("a")[0];
+            title_text = title.innerText;
+            result += title_text + '\n';
 
+            // get author
             var author_series = title_and_author.getElementsByTagName("p");
-            for (var j = 0; j < author_series.length; j++) {
-                var text = author_series[j].innerText;
-                if (text.length != 0) {
-                    result += '\n' + text;
+            if (author_series.length != 0) {
+                var author = author_series[author_series.length-1].innerText;
+                if (author.length != 0) {
+                    result += author + '\n';
                 }
             }
-            result += '\n\n';
+
+            // get storygraph supplied tags
+            var tags_container = panes[i].getElementsByClassName("leading-3")[0];
+            if (tags_container != null) {
+                var tags_str = ''
+                var tags = tags_container.getElementsByTagName("span");
+                for (var j = 0; j < tags.length; j++) {
+                    var tag = tags[j].innerText;
+                    if (tag.length != 0) {
+                        tags_str += tag + ', ';
+                    }
+                }
+                if (tags_str != '') {
+                    result += tags_str.substring(0, tags_str.length-2) + '\n';
+                }
+            }
+
+            // add url (from title)
+            var url = 'https://app.thestorygraph.com' + title.getAttribute('href');
+            result += url + '\n';
+
+            result += '\n';
         }
         return result;
     }
