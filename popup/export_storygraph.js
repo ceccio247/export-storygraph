@@ -11,9 +11,14 @@ function listenForClicks() {
      * then get the beast URL and
      * send a "beastify" message to the content script in the active tab.
      */
-    function beastify(tabs) {
+    function exportclip(tabs) {
         browser.tabs.sendMessage(tabs[0].id, {
-          command: "sgexport",
+          command: "sgexportclip",
+        });
+    }
+    function exportdl(tabs) {
+        browser.tabs.sendMessage(tabs[0].id, {
+          command: "sgexportdl",
         });
     }
 
@@ -29,10 +34,15 @@ function listenForClicks() {
      * Get the active tab,
      * then call "beastify()" or "reset()" as appropriate.
      */
-    if (e.target.classList.contains("sgexport")) {
+    if (e.target.classList.contains("sgexportclip")) {
       browser.tabs
         .query({ active: true, currentWindow: true })
-        .then(beastify)
+        .then(exportclip)
+        .catch(reportError);
+    } else if (e.target.classList.contains("sgexportdl")) {
+      browser.tabs
+        .query({ active: true, currentWindow: true })
+        .then(exportdl)
         .catch(reportError);
     }
   });

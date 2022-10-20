@@ -15,21 +15,9 @@ body {
     padding: 4px;
     cursor: pointer;
     border-radius: 5px;
-}
-
-.sgexport:hover {
-    background-color: #CFF2F2;
-}
-
-.sgexport {
     background-color: #E5F2F2;
 }
 
-.reset {
-    background-color: #FBFBC9;
+.button:hover {
+    background-color: #CFF2F2;
 }
-
-.reset:hover {
-    background-color: #EAEA9D;
-}
-
