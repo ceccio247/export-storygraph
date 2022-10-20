@@ -13,7 +13,6 @@ Thus, I learned how to make a Firefox extension and made this.
 Right now the extension will export *only* the To-Read pile in a human-readable format to your clipboard,
 where it can then be pasted into the text editor of your choosing. The roadmap for this project is as follows:
 
-- Include more information in the exported data.
 - Allow the user to directly download the exported file in addition to exporting to clipboard.
 - Allow for export to CSV.
 - Expand the system to export other parts of StoryGraph, like owned books.
