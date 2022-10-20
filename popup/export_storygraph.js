@@ -6,6 +6,19 @@
 function listenForClicks() {
   document.addEventListener("click", (e) => {
 
+    function temporaryExportedMessage(id) {
+        var element = document.getelementById(id);
+        var origText = element.innerHTML;
+        element.innerHTML = "Exported!";
+        /*setTimeout((message, elem) => {
+                elem.innerText = message;
+            },
+            10000,
+            origText,
+            element
+        );*/
+    }
+
     /**
      * Insert the page-hiding CSS into the active tab,
      * then get the beast URL and
@@ -34,12 +47,12 @@ function listenForClicks() {
      * Get the active tab,
      * then call "beastify()" or "reset()" as appropriate.
      */
-    if (e.target.classList.contains("sgexportclip")) {
+    if (e.target.id === "sgexportclip") {
       browser.tabs
         .query({ active: true, currentWindow: true })
         .then(exportclip)
         .catch(reportError);
-    } else if (e.target.classList.contains("sgexportdl")) {
+    } else if (e.target.id === "sgexportdl") {
       browser.tabs
         .query({ active: true, currentWindow: true })
         .then(exportdl)

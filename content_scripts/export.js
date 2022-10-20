@@ -24,9 +24,11 @@
             // get author
             var author_series = title_and_author.getElementsByTagName("p");
             if (author_series.length != 0) {
-                var author = author_series[author_series.length-1].innerText;
-                if (author.length != 0) {
-                    result += author + '\n';
+                for (var j = 0; j < author_series.length; j++) {
+                    var author = author_series[j].innerText;
+                    if (author.length != 0) {
+                        result += author + '\n';
+                    }
                 }
             }
 
@@ -83,6 +85,7 @@
         dlink.click();
         dlink.remove();
     }
+
 
     function sgExportDl() {
         if (window.isSecureContext) {
