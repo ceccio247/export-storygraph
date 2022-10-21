@@ -1,7 +1,8 @@
 {
     "manifest_version": 2,
     "name": "Export StoryGraph",
-    "version": "1.0",
+    "version": "1.1",
+    "homepage_url": "https://github.com/ceccion/export-storygraph",
 
     "description": "Allows you to export the contents of your StoryGraph to-read pile",
     
