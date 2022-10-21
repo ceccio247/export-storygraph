@@ -80,11 +80,21 @@
     }
 
     function getToReadElt() {
-        var toRead = document.getElementsByClassName("to-read-books-panes")[0]
-        if (toRead == null) {
-            toRead = document.getElementsByClassName("filtered-to-read-books-panes")[0]
+        const classes = [
+            "to-read-books-panes",
+            "filtered-to-read-books-panes",
+            "owned-books-panes",
+            "filtered-owned-books-panes",
+            "read-books-panes",
+            "filtered-read-books-panes",
+        ]
+        for (const classname of classes) {
+            var toRead = document.getElementsByClassName(classname)[0];
+            if (toRead != null) {
+                return toRead;
+            }
         }
-        return toRead
+        throw "no valid panes";
     }
 
     // credit to ahuff44 on stackoverflow for this code.

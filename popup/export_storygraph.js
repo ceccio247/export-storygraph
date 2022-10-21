@@ -6,6 +6,9 @@ function isValidURL() {
                 var url = tabs[0].url;
                 const valid_urls = [
                     'https://app.thestorygraph.com/to-read',
+                    'https://app.thestorygraph.com/owned-books',
+                    'https://app.thestorygraph.com/currently-reading',
+                    'https://app.thestorygraph.com/books-read',
                 ]
                 for (const prefix of valid_urls) {
                     if (url.startsWith(prefix)) {

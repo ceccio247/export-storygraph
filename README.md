@@ -10,10 +10,9 @@ I quickly ran into numerous difficulties:
 
 Thus, I learned how to make a Firefox extension and made this.
 
-Right now the extension will export *only* the To-Read pile in a human-readable format to your clipboard,
-where it can then be pasted into the text editor of your choosing. The roadmap for this project is as follows:
+Right now the extension will export your to-read pile, your owned bookes, or your read books in a human-readable format
+to cour clipboard or to a TXT file. The roadmap for this project is as follows:
 
-- Expand the system to export other parts of StoryGraph, like owned books.
 - Allow for export to CSV.
 - Try to automatically scroll to the bottom of the page for the user.
-- Figure out why the checkboxes reset each time you open the popup
+- Figure out why the checkboxes reset each time you open the popup.
