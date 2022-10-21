@@ -1,3 +1,23 @@
+function isValidURL() {
+    let valid = new Promise(function(resolve, reject) {
+        browser.tabs        
+            .query({ active: true, currentWindow: true })
+            .then((tabs) => {
+                var url = tabs[0].url;
+                const valid_urls = [
+                    'https://app.thestorygraph.com/to-read',
+                ]
+                for (const prefix of valid_urls) {
+                    if (url.startsWith(prefix)) {
+                        resolve('valid url');
+                    }
+                }
+                reject('invalid url');
+            });
+    });
+    return valid;
+}
+
 function getOptions() {
     return {
         sgtags: document.querySelector('#opt-sgtags').checked,
@@ -79,10 +99,10 @@ function listenForClicks() {
  * There was an error executing the script.
  * Display the popup's error message, and hide the normal UI.
  */
-function reportExecuteScriptError(error) {
+function reportExecuteScriptError() {
   document.querySelector("#popup-content").classList.add("hidden");
   document.querySelector("#error-content").classList.remove("hidden");
-  console.error(`Failed to execute sgexport content script: ${error.message}`);
+  //console.error(`Failed to execute sgexport content script: ${error.message}`);
 }
 
 /**
@@ -90,8 +110,12 @@ function reportExecuteScriptError(error) {
  * and add a click handler.
  * If we couldn't inject the script, handle the error.
  */
-browser.tabs
-  .executeScript({ file: "/content_scripts/export.js" })
-  .then(listenForClicks)
-  .catch(reportExecuteScriptError);
+isValidURL().then(() => {
+    browser.tabs
+        .executeScript({ file: "/content_scripts/export.js" })
+        .then(listenForClicks)
+        .catch(reportExecuteScriptError);
+}).catch(() => {
+    reportExecuteScriptError();
+});
 
