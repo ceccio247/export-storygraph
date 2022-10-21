@@ -1,4 +1,16 @@
 
+function temporaryExportedMessage(id) {
+    var element = document.getElementById(id);
+    var origText = element.innerHTML;
+    element.innerHTML = "Exported!";
+    setTimeout((message, elem) => {
+            elem.innerText = message;
+        },
+        1000,
+        origText,
+        element
+    );
+}
 /**
  * Listen for clicks on the buttons, and send the appropriate message to
  * the content script in the page.
@@ -6,18 +18,6 @@
 function listenForClicks() {
   document.addEventListener("click", (e) => {
 
-    function temporaryExportedMessage(id) {
-        var element = document.getelementById(id);
-        var origText = element.innerHTML;
-        element.innerHTML = "Exported!";
-        /*setTimeout((message, elem) => {
-                elem.innerText = message;
-            },
-            10000,
-            origText,
-            element
-        );*/
-    }
 
     /**
      * Insert the page-hiding CSS into the active tab,
@@ -27,11 +27,15 @@ function listenForClicks() {
     function exportclip(tabs) {
         browser.tabs.sendMessage(tabs[0].id, {
           command: "sgexportclip",
+        }).then(() => {
+            temporaryExportedMessage("sgexportclip")
         });
     }
     function exportdl(tabs) {
         browser.tabs.sendMessage(tabs[0].id, {
           command: "sgexportdl",
+        }).then(() => {
+            temporaryExportedMessage("sgexportdl")
         });
     }
 
