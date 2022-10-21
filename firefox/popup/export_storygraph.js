@@ -23,6 +23,7 @@ function isValidURL() {
 
 function getOptions() {
     return {
+        series: document.querySelector('#opt-series').checked,
         sgtags: document.querySelector('#opt-sgtags').checked,
         usertags: document.querySelector('#opt-usertags').checked,
         url: document.querySelector('#opt-url').checked

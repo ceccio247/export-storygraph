@@ -25,9 +25,11 @@
             var author_series = title_and_author.getElementsByTagName("p");
             if (author_series.length != 0) {
                 for (var j = 0; j < author_series.length; j++) {
-                    var author = author_series[j].innerText;
-                    if (author.length != 0) {
-                        result += author + '\n';
+                    if (options.series || j == author_series.length-1) {
+                        var author = author_series[j].innerText;
+                        if (author.length != 0) {
+                            result += author + '\n';
+                        }
                     }
                 }
             }
