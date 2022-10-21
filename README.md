@@ -1,5 +1,5 @@
 # export-storygraph
-A Firefox extension that lets you export your StoryGraph To-Read pile.
+A Firefox extension that lets you export your StoryGraph lists.
 
 I wanted to be able to send my mom my To-Read list on StoryGraph because she wanted to know what to get me for Christmas.
 I quickly ran into numerous difficulties:
