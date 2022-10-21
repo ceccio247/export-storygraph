@@ -1,3 +1,11 @@
+function getOptions() {
+    return {
+        sgtags: document.querySelector('#opt-sgtags').checked,
+        usertags: document.querySelector('#opt-usertags').checked,
+        url: document.querySelector('#opt-url').checked
+    }
+}
+
 
 function temporaryExportedMessage(id) {
     var element = document.getElementById(id);
@@ -27,6 +35,7 @@ function listenForClicks() {
     function exportclip(tabs) {
         browser.tabs.sendMessage(tabs[0].id, {
           command: "sgexportclip",
+          options: getOptions(),
         }).then(() => {
             temporaryExportedMessage("sgexportclip")
         });
@@ -34,6 +43,7 @@ function listenForClicks() {
     function exportdl(tabs) {
         browser.tabs.sendMessage(tabs[0].id, {
           command: "sgexportdl",
+          options: getOptions(),
         }).then(() => {
             temporaryExportedMessage("sgexportdl")
         });

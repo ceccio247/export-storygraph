@@ -21,3 +21,8 @@ body {
 .button:hover {
     background-color: #CFF2F2;
 }
+
+#options-div {
+    text-align: left;
+    font-size: 0.9em;
+}

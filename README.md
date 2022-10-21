@@ -14,6 +14,6 @@ Right now the extension will export *only* the To-Read pile in a human-readable 
 where it can then be pasted into the text editor of your choosing. The roadmap for this project is as follows:
 
 - Expand the system to export other parts of StoryGraph, like owned books.
-- Add a checkbox system where the user can decide what data they want to export.
 - Allow for export to CSV.
 - Try to automatically scroll to the bottom of the page for the user.
+- Figure out why the checkboxes reset each time you open the popup

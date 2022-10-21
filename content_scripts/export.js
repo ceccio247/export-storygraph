@@ -9,7 +9,7 @@
     }
     window.hasRun = true;
 
-    function sgBookPanelsToStr(element) {
+    function sgBookPanelsToStr(element, options) {
         result = ''
         var panes = element.getElementsByClassName("book-pane-content");
         for(var i = 0; i < panes.length; i++) {
@@ -32,25 +32,47 @@
                 }
             }
 
-            // get storygraph supplied tags
-            var tags_container = panes[i].getElementsByClassName("leading-3")[0];
-            if (tags_container != null) {
-                var tags_str = ''
-                var tags = tags_container.getElementsByTagName("span");
-                for (var j = 0; j < tags.length; j++) {
-                    var tag = tags[j].innerText;
-                    if (tag.length != 0) {
-                        tags_str += tag + ', ';
+            if (options.sgtags) {
+                // get storygraph supplied tags
+                var tags_container = panes[i].getElementsByClassName("leading-3")[0];
+                if (tags_container != null) {
+                    var tags_str = ''
+                    var tags = tags_container.getElementsByTagName("span");
+                    for (var j = 0; j < tags.length; j++) {
+                        var tag = tags[j].innerText.trim();
+                        if (tag.length != 0) {
+                            tags_str += tag + ', ';
+                        }
+                    }
+                    if (tags_str != '') {
+                        result += tags_str.substring(0, tags_str.length-2) + '\n';
                     }
                 }
-                if (tags_str != '') {
-                    result += tags_str.substring(0, tags_str.length-2) + '\n';
+            }
+
+            if (options.usertags) {
+                // get storygraph supplied tags
+                var tags_container = panes[i].getElementsByClassName("tags-container")[0];
+                if (tags_container != null) {
+                    var tags_str = ''
+                    var tags = tags_container.getElementsByTagName("a");
+                    for (var j = 0; j < tags.length; j++) {
+                        var tag = tags[j].innerText.trim();
+                        if (tag.length != 0) {
+                            tags_str += tag + ', ';
+                        }
+                    }
+                    if (tags_str != '') {
+                        result += tags_str.substring(0, tags_str.length-2) + '\n';
+                    }
                 }
             }
 
             // add url (from title)
-            var url = 'https://app.thestorygraph.com' + title.getAttribute('href');
-            result += url + '\n';
+            if (options.url) {
+                var url = 'https://app.thestorygraph.com' + title.getAttribute('href');
+                result += url + '\n';
+            }
 
             result += '\n';
         }
@@ -87,17 +109,17 @@
     }
 
 
-    function sgExportDl() {
+    function sgExportDl(options) {
         if (window.isSecureContext) {
-            download_file("toread_export.txt", sgBookPanelsToStr(getToReadElt()))
+            download_file("toread_export.txt", sgBookPanelsToStr(getToReadElt(), options))
         } else {
             throw 'something went fucky wucky'
         }
     }
 
-    function sgExportClipboard() {
+    function sgExportClipboard(options) {
         if (window.isSecureContext) {
-            navigator.clipboard.writeText(sgBookPanelsToStr(getToReadElt()))
+            navigator.clipboard.writeText(sgBookPanelsToStr(getToReadElt(), options))
         } else {
             throw 'cannot export to clipboard over http. use https.'
         }
@@ -105,9 +127,9 @@
 
     browser.runtime.onMessage.addListener((message) => {
         if (message.command === "sgexportclip") {
-            sgExportClipboard();
+            sgExportClipboard(message.options);
         } else if (message.command === "sgexportdl") {
-            sgExportDl();
+            sgExportDl(message.options);
         }
     });
 })();
