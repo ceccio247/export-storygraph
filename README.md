@@ -11,7 +11,7 @@ I quickly ran into numerous difficulties:
 Thus, I learned how to make a Firefox extension and made this.
 
 Right now the extension will export your to-read pile, your owned bookes, or your read books in a human-readable format
-to cour clipboard or to a TXT file. The roadmap for this project is as follows:
+to your clipboard or to a TXT file. The roadmap for this project is as follows:
 
 - Allow for export to CSV.
 - Try to automatically scroll to the bottom of the page for the user.
