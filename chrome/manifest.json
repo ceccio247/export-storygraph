@@ -1,0 +1,21 @@
+{
+    "manifest_version": 3,
+    "name": "Export StoryGraph",
+    "version": "1.1",
+
+    
+    "icons": {
+        "48": "icons/export-storygraph-48.png"
+    },
+
+    "permissions": [
+        "activeTab",
+        "scripting"
+    ],
+
+    "action": {
+        "default_icon": "icons/export-storygraph-32.png",
+        "default_title": "Export StoryGraph",
+        "default_popup": "popup/export_storygraph.html"
+    }
+}

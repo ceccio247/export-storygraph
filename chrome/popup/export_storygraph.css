@@ -1,0 +1,28 @@
+html,
+body {
+    width: max-content;
+    text-align: center;
+    font-size: 1.1em;
+    font-family: Arial;
+}
+
+.hidden {
+    display: none;
+}
+
+.button {
+    margin: 3% auto;
+    padding: 4px;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: #E5F2F2;
+}
+
+.button:hover {
+    background-color: #CFF2F2;
+}
+
+#options-div {
+    text-align: left;
+    font-size: 0.9em;
+}

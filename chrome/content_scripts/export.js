@@ -99,6 +99,33 @@
         throw "no valid panes";
     }
 
+    // credit to stackoverflow users Jeff Gran and tom_mai78101
+    function copy_text(text) {
+        //Create a textbox field where we can insert text to. 
+        var copyFrom = document.createElement("textarea");
+
+        //Set the text content to be the text you wished to copy.
+        copyFrom.textContent = text;
+
+        //Append the textbox field into the body as a child. 
+        //"execCommand()" only works when there exists selected text, and the text is inside 
+        //document.body (meaning the text is part of a valid rendered HTML element).
+        document.body.appendChild(copyFrom);
+
+        //Select all the text!
+        copyFrom.select();
+
+        //Execute command
+        document.execCommand('copy');
+
+        //(Optional) De-select the text using blur(). 
+        copyFrom.blur();
+
+        //Remove the textbox field from the document.body, so no other JavaScript nor 
+        //other elements can get access to this.
+        document.body.removeChild(copyFrom);
+    } 
+
     // credit to ahuff44 on stackoverflow for this code.
     function download_file(name, contents, mime_type) {
         mime_type = mime_type || "text/plain";
@@ -131,13 +158,13 @@
 
     function sgExportClipboard(options) {
         if (window.isSecureContext) {
-            navigator.clipboard.writeText(sgBookPanelsToStr(getToReadElt(), options))
+            copy_text(sgBookPanelsToStr(getToReadElt(), options))
         } else {
             throw 'cannot export to clipboard over http. use https.'
         }
     }
 
-    browser.runtime.onMessage.addListener((message) => {
+    chrome.runtime.onMessage.addListener((message) => {
         if (message.command === "sgexportclip") {
             sgExportClipboard(message.options);
         } else if (message.command === "sgexportdl") {
