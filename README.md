@@ -8,7 +8,7 @@ I quickly ran into numerous difficulties:
 2. There is no feature to export the To-Read pile, or any other list of books, to a human-readbale format.
 3. Suggesting features requires a premium subscription, and there is no guarantee that the devs will implement your suggestion.
 
-Thus, I learned how to make Firefox and Chrome extension and made this.
+Thus, I learned how to make Firefox and Chrome extensions and made this.
 
 Right now the extension will export your to-read pile, your owned books, or your read books in a human-readable format
 to your clipboard or to a TXT file. The roadmap for this project is as follows:
